@@ -19,7 +19,9 @@ module.exports = merge(baseConfig, {
       sourceMap: true,
       uglifyOptions: {
         output: {
-          comments: false
+          comments: false,
+          drop_console: true,
+          pure_funcs: ["console.log"]
         },
         compress: {
           warnings: false

@@ -82,7 +82,8 @@ module.exports = {
     new ProgressBarPlugin(), //加个命令行显示的打包进度条
     new HtmlWebpackPlugin({
       showErrors: true,
-      template: resolvePath("app/index.html")
+      template: resolvePath("app/index.html"),
+      favicon: resolvePath("static/favicon.ico")
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.NoEmitOnErrorsPlugin(), //保证出错时页面不阻塞，且会在编译结束后报错

@@ -4,7 +4,7 @@ import { AppContainer } from "react-hot-loader";
 // import { Provider } from "react-redux";
 import App from "./app.js";
 // import storeConf from "./storeConf.js";
-import "./index.css";
+import "./style/index.css";
 
 // const store = storeConf();
 

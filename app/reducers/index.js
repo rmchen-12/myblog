@@ -1,5 +1,5 @@
 import admin from "./admin";
-import front from "./front";
+import { reducer as front } from "./front";
 import { combineReducers } from "redux";
 
 const initialState = {

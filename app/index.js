@@ -1,20 +1,22 @@
 import React from "react";
 import { render } from "react-dom";
 import { AppContainer } from "react-hot-loader";
-// import { Provider } from "react-redux";
+import { Provider } from "react-redux";
 import App from "./app.js";
-// import storeConf from "./storeConf.js";
+import storeConf from "./storeConf.js";
 import "./style/index.css";
 
-// const store = storeConf();
+const store = storeConf();
 
 const renderApp = Component => {
   render(
-    <AppContainer>
-      <React.StrictMode>
-        <Component />
-      </React.StrictMode>
-    </AppContainer>,
+    <Provider store={store}>
+      <AppContainer>
+        <React.StrictMode>
+          <Component />
+        </React.StrictMode>
+      </AppContainer>
+    </Provider>,
     document.getElementById("root")
   );
 };

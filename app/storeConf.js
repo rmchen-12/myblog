@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import rootReducer from "./reducers";
 import createSagaMiddleware from "redux-saga";
-import rootSaga from "./sagas";
+// import rootSaga from "./sagas";
 
 const sagaMiddleware = createSagaMiddleware();
 const middlewares = [];
@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "production") {
 
 export default function storeConf(initialState = {}) {
   const store = createStore(rootReducer, initialState, storeEnhances);
-  sagaMiddleware.run(rootSaga);
+  //   sagaMiddleware.run(rootSaga);
   if (module.hot && process.env.NODE_ENV !== "production") {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept("./reducers", () => {

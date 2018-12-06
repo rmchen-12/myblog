@@ -7,6 +7,7 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 
 module.exports = merge(baseConfig, {
   mode: "production",
+  devtool: "source-map",
   plugins: [
     new ExtractTextPlugin({
       filename: "bundle.[contenthash].css",
@@ -28,7 +29,8 @@ module.exports = merge(baseConfig, {
         }
       }
     }),
-    new BundleAnalyzerPlugin()
+    new BundleAnalyzerPlugin(),
+    new webpack.EnvironmentPlugin({ NODE_ENV: "production" })
   ],
   optimization: {
     splitChunks: {

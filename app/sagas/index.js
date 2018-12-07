@@ -1,1 +1,5 @@
-export default function* rootSaga() {}
+import { fork } from "redux-saga/effects";
+
+export default function* rootSaga() {
+  yield fork();
+}

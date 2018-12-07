@@ -4,13 +4,16 @@ const webpack = require("webpack");
 
 module.exports = merge(baseConfig, {
   mode: "development",
-  devtool: "inline-source-map",
+  devtool: "cheap-module-source-map",
   devServer: {
     contentBase: "./build",
     port: 3000,
     hot: true,
-    inline: true
-    // quiet: true
+    inline: true,
+    quiet: true
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()]
+  plugins: [
+    new webpack.EnvironmentPlugin({ NODE_ENV: "development" }),
+    new webpack.HotModuleReplacementPlugin()
+  ]
 });

@@ -83,7 +83,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       showErrors: true,
       template: resolvePath("app/public/index.html"),
-      favicon: resolvePath("static/favicon.ico")
+      favicon: resolvePath("app/public/favicon.ico")
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.NoEmitOnErrorsPlugin(), //保证出错时页面不阻塞，且会在编译结束后报错

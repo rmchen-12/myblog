@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import { Provider } from "react-redux";
-import App from "./app.js";
+import App from "./containers";
 import storeConf from "./storeConf.js";
 import "./style/index.css";
 
@@ -12,9 +12,7 @@ const renderApp = Component => {
   render(
     <Provider store={store}>
       <AppContainer>
-        <React.StrictMode>
-          <Component />
-        </React.StrictMode>
+        <Component />
       </AppContainer>
     </Provider>,
     document.getElementById("root")
@@ -25,10 +23,10 @@ renderApp(App);
 
 // webpack Hot Module Replacement API
 if (module.hot && process.env.NODE_ENV !== "production") {
-  module.hot.accept("./App", () => {
+  module.hot.accept("./containers", () => {
     // if you are using harmony modules ({modules:false})
     renderApp(App);
     // in all other cases - re-require App manually
-    renderApp(require("./App"));
+    renderApp(require("./containers"));
   });
 }

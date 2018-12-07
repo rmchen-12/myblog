@@ -1,4 +1,15 @@
 {
   "presets": ["env", "react", "stage-3"],
-  "plugins": ["react-hot-loader/babel", "transform-class-properties"]
+  "plugins": [
+    "react-hot-loader/babel",
+    "transform-class-properties",
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "es",
+        "style": "css"
+      }
+    ]
+  ]
 }

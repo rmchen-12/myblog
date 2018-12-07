@@ -29,8 +29,7 @@ module.exports = merge(baseConfig, {
         }
       }
     }),
-    new BundleAnalyzerPlugin(),
-    new webpack.EnvironmentPlugin({ NODE_ENV: "production" })
+    new BundleAnalyzerPlugin()
   ],
   optimization: {
     splitChunks: {

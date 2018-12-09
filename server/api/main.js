@@ -5,7 +5,7 @@ import { responseClient } from "../util";
 
 const router = Express.Router();
 
-// router.use("/user", require("./user"));
+router.use("/user", require("./user"));
 //获取全部标签
 router.get("/getAllTags", (req, res) => {
   Tags.find(null, "name")
@@ -66,7 +66,9 @@ router.get("/getArticleDetail", (req, res) => {
         .then(result => {
           responseClient(res, 200, 0, "success", data);
         })
-        .cancel(err => throw err);
+        .cancel(err => {
+          throw err;
+        });
     })
     .cancel(err => responseClient(res));
 });

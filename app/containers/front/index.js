@@ -22,13 +22,11 @@ class Front extends PureComponent {
     this.state = {};
   }
   render() {
+    const { login, register } = this.props;
     return (
       <div>
-        <div>
-          <Test />
-          <Banner />
-          <Menus />
-        </div>
+        <div>{/* <Banner />
+          <Menus /> */}</div>
         <div>
           <div>
             <div>
@@ -40,7 +38,7 @@ class Front extends PureComponent {
               </Switch>
             </div>
             <div>
-              <Login />
+              <Login login={login} register={register} />
               <Logined />
             </div>
             <div />
@@ -51,4 +49,20 @@ class Front extends PureComponent {
   }
 }
 
-export default Front;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    userInfo: state.globalState.userInfo
+  };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    login: bindActionCreators(IndexActions.get_login, dispatch),
+    register: bindActionCreators(IndexActions.get_register, dispatch)
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Front);

@@ -9,20 +9,18 @@ import config from "../config";
 const app = new Express();
 const port = config.port;
 
-//涉及到api请求会请求另一个服务器，做一个代理转发
-const targetUrl = `http://${config.apiHost}:${config.apiPort}`;
-const proxy = httpProxy.createProxyServer({
-  target: targetUrl
-});
-
 app.use("/api", (req, res) => {
   proxy.web(req, res, { target: targetUrl });
 });
 
-//单页应用路由有react-router处理，不配置这个的话刷新会报404
 app.use("/", connectHistoryApiFallback());
 app.use("/", Express.static(path.join(__dirname, "..", "build")));
 app.use("/", Express.static(path.join(__dirname, "..", "static")));
+
+const targetUrl = `http://${config.apiHost}:${config.apiPort}`;
+const proxy = httpProxy.createProxyServer({
+  target: targetUrl
+});
 
 app.use(compression());
 app.use(favicon(path.join(__dirname, "..", "static", "favicon.ico")));
@@ -49,9 +47,11 @@ if (process.env.NODE_ENV !== "production") {
 app.listen(port, err => {
   if (err) {
     console.error(err);
-    return;
+  } else {
+    console.log(
+      `===>open http://${config.host}:${
+        config.port
+      } in a browser to view the app`
+    );
   }
-  console.log(
-    `===>open http://${config.host}:${config.port} in a browser to view the app`
-  );
 });

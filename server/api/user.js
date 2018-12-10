@@ -57,7 +57,7 @@ router.post("/register", (req, res) => {
       return;
     }
     let user = new User({
-      username,
+      username: userName,
       password: md5(password + MD5_SUFFIX),
       type: "user"
     });
@@ -78,6 +78,19 @@ router.post("/register", (req, res) => {
         return;
       });
   });
+});
+
+router.get("/userInfo", (req, res) => {
+  if (req.session.userInfo) {
+    responseClient(res, 200, 0, "", req.session.userInfo);
+  } else {
+    responseClient(res, 200, 1, "请重新登录", req.session.userInfo);
+  }
+});
+
+router.get("/logout", (req, res) => {
+  req.session.destroy();
+  res.redirect("/");
 });
 
 module.exports = router;

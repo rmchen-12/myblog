@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Input, Form, Icon, Button } from "antd";
 const FormItem = Form.Item;
-import axios from "axios";
 
 class LoginFormCom extends Component {
   constructor(props) {

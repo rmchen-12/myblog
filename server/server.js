@@ -55,3 +55,8 @@ app.listen(port, err => {
     );
   }
 });
+
+//打印错误
+process.on("uncaughtException", function(err) {
+  console.log(err);
+});

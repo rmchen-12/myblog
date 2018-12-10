@@ -17,7 +17,7 @@ const { clear_msg, user_auth } = actions;
 
 class App extends PureComponent {
   componentDidMount() {
-    this.props.user_auth();
+    // this.props.user_auth();
   }
 
   render() {

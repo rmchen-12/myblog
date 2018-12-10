@@ -5,7 +5,7 @@ import { MD5_SUFFIX, responseClient, md5 } from "../util";
 
 router.post("/login", (req, res) => {
   let { username, password } = req.body;
-  console.log(username, password);
+  console.log(req.body, username, password);
 
   if (!username) {
     responseClient(res, 400, 2, "用户名不可为空");

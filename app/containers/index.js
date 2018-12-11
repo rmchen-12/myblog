@@ -1,11 +1,6 @@
 import React, { PureComponent } from "react";
-import {
-  BrowserRouter as Router,
-  Route,
-  Switch,
-  Redirect
-} from "react-router-dom";
-import { notification } from "antd";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { notification, Spin } from "antd";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { actions } from "../reducers";
@@ -17,12 +12,35 @@ const { clear_msg, user_auth } = actions;
 
 class App extends PureComponent {
   componentDidMount() {
-    // this.props.user_auth();
+    this.props.user_auth();
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.props.notification &&
+      this.props.notification.content &&
+      this.props.notification !== prevProps.notification
+    ) {
+      this.props.notification.type === 1
+        ? this.openNotification("success", this.props.notification.content)
+        : this.openNotification("error", this.props.notification.content);
+    } else {
+      return;
+    }
+  }
+
+  openNotification = (type, message) => {
+    notification[type]({
+      message: message,
+      description: "",
+      onClose: () => {
+        this.props.clear_msg();
+      }
+    });
+  };
 
   render() {
     let { isFetching } = this.props;
-    // console.log(isFetching, notification, userInfo);
 
     return (
       <Router>
@@ -32,6 +50,7 @@ class App extends PureComponent {
             <Route path="/admin" component={Admin} />
             <Route component={Front} />
           </Switch>
+          {isFetching && <Spin />}
         </div>
       </Router>
     );

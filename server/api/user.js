@@ -5,7 +5,6 @@ import { MD5_SUFFIX, responseClient, md5 } from "../util";
 
 router.post("/login", (req, res) => {
   let { username, password } = req.body;
-  console.log(req.body, username, password);
 
   if (!username) {
     responseClient(res, 400, 2, "用户名不可为空");
@@ -15,6 +14,7 @@ router.post("/login", (req, res) => {
     responseClient(res, 400, 2, "密码不可为空");
     return;
   }
+
   User.findOne({
     username,
     password: md5(password + MD5_SUFFIX)
@@ -25,7 +25,9 @@ router.post("/login", (req, res) => {
         data.username = userInfo.username;
         data.userType = userInfo.type;
         data.userId = userInfo._id;
-        // req.session.userInfo = data;
+        //登录成功后设置session
+        req.session.userInfo = data;
+
         responseClient(res, 200, 0, "登录成功", data);
         return;
       }
@@ -65,11 +67,11 @@ router.post("/register", (req, res) => {
       .save()
       .then(() => {
         User.findOne({ username: userName }).then(userInfo => {
-          let data = [];
+          let data = {};
           data.username = userInfo.username;
           data.userType = userInfo.type;
           data.userId = userInfo._id;
-          responseClient(res, 200, 0, "注册成功");
+          responseClient(res, 200, 0, "注册成功", data);
           return;
         });
       })

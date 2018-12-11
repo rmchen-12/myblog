@@ -64,6 +64,16 @@ export function* registerFlow() {
         type: IndexActionTypes.RESPONSE_USER_INFO,
         data: response.data
       });
+    } else if (response && response.code === 1) {
+      yield put({
+        type: IndexActionTypes.SET_MESSAGE,
+        msgContent: response.message,
+        msgType: 0
+      });
+      yield put({
+        type: IndexActionTypes.RESPONSE_USER_INFO,
+        data: response.data
+      });
     }
   }
 }

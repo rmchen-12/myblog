@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-dev-api": "nodemon ./server/api",
-    "start": "npm run start-dev-api & node ./server/index.js",
+    "server": "nodemon ./server/api",
+    "start": "node ./server/index.js & npm run start-dev-api ",
     "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.prod.conf.js"
   },
   "keywords": [],

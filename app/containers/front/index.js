@@ -24,8 +24,9 @@ class Front extends PureComponent {
     super(props);
     this.state = {};
   }
+
   render() {
-    const { login, register } = this.props;
+    const { login, register, userInfo, history } = this.props;
     return (
       <Layout className={style.layout}>
         <Header>
@@ -43,8 +44,8 @@ class Front extends PureComponent {
               </Switch>
             </Col>
             <Col span={5} className={style.login}>
-              {this.props.userInfo.userId ? (
-                <Logined />
+              {userInfo.userId ? (
+                <Logined history={history} userInfo={userInfo} />
               ) : (
                 <Login login={login} register={register} />
               )}

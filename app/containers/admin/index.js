@@ -6,7 +6,7 @@ import PropTypes from "prop-types";
 import style from "./index.css";
 
 import NotFound from "../../components/notFound";
-import Index from "./index";
+import Index from "./adminIndex";
 import ManageUser from "./manageUser";
 import ManageArticle from "./manageArticle";
 import ManageTags from "./manageTags";
@@ -19,6 +19,13 @@ import { actions } from "../../reducers/admin";
 
 const { change_location_admin } = actions;
 const { Header, Content, Footer, Sider } = Layout;
+const menus = [
+  { url: "/", name: "首页", iconType: "home" },
+  { url: "/manageUser", name: "用户管理", iconType: "usergroup-delete" },
+  { url: "/newArticle", name: "发文", iconType: "file-text" },
+  { url: "/manageTags", name: "标签管理", iconType: "tags-o" },
+  { url: "/manageArticle", name: "文章管理", iconType: "edit" }
+];
 
 class Admin extends PureComponent {
   state = {
@@ -40,7 +47,9 @@ class Admin extends PureComponent {
   render() {
     const {
       match: { url },
-      userInfo
+      userInfo,
+      history,
+      change_location_admin
     } = this.props;
     if (userInfo && userInfo.userType) {
       return (
@@ -53,19 +62,21 @@ class Admin extends PureComponent {
                 collapsed={this.state.collapsed}
               >
                 <div className={style.logo} />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-                  <Menu.Item key="1">
-                    <Icon type="user" />
-                    <span>nav 1</span>
-                  </Menu.Item>
-                  <Menu.Item key="2">
-                    <Icon type="video-camera" />
-                    <span>nav 2</span>
-                  </Menu.Item>
-                  <Menu.Item key="3">
-                    <Icon type="upload" />
-                    <span>nav 3</span>
-                  </Menu.Item>
+                <Menu
+                  theme="dark"
+                  mode="inline"
+                  defaultSelectedKeys={["/"]}
+                  onClick={({ key }) => {
+                    change_location_admin(key);
+                    history.push(`/admin${key}`);
+                  }}
+                >
+                  {menus.map(item => (
+                    <Menu.Item key={item.url}>
+                      <Icon type={item.iconType} />
+                      <span>{item.name}</span>
+                    </Menu.Item>
+                  ))}
                 </Menu>
               </Sider>
               <Layout>

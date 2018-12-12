@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon ./server/api",
-    "start": "node ./server/index.js & npm run server",
+    "start": "node ./server/index.js",
     "build": "cross-env NODE_ENV=production webpack --config ./config/webpack.prod.conf.js"
   },
   "keywords": [],

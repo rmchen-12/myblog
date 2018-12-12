@@ -1,5 +1,5 @@
 import { put, take, call } from "redux-saga/effects";
-import { get } from "../../fetch";
+import { get } from "../../fetch/";
 import { actionsTypes as IndexActionTypes } from "../../reducers";
 import { actionTypes as ManageUserActionTypes } from "../../reducers/admin/manageUser";
 
@@ -21,5 +21,23 @@ export function* fetch_users(pageNum) {
 export function* get_all_users_flow() {
   while (true) {
     let request = yield take(ManageUserActionTypes.GET_ALL_USER);
+    let pageNum = request.pageNum || 1;
+    let response = yield call(fetch_users, pageNum);
+    if (response && response.code === 0) {
+      for (let i = 0; i < response.data.list.length; i++) {
+        response.data.list[i].key = i;
+      }
+      let data = {};
+      data.total = response.data.total;
+      data.list = response.data.list;
+      data.pageNum = Number.parseInt(pageNum);
+      yield put({ type: ManageUserActionTypes.RESOLVE_GET_ALL_USERS, data });
+    } else {
+      yield put({
+        type: IndexActionTypes.SET_MESSAGE,
+        msgContent: response.message,
+        msgType: 0
+      });
+    }
   }
 }

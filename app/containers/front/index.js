@@ -13,7 +13,7 @@ import Login from "./components/login";
 import Logined from "./components/logined";
 import style from "./index.css";
 
-import { actions } from "../../reducers/adminManagerTags";
+import { actions } from "../../reducers/admin/manageUser";
 import { actions as FrontActions } from "../../reducers/front";
 import { actions as IndexActions } from "../../reducers";
 

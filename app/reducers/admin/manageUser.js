@@ -1,5 +1,3 @@
-import { actionsTypes } from "..";
-
 const initialState = {
   list: [],
   pageNum: 1,
@@ -14,7 +12,7 @@ export const actionTypes = {
 export const actions = {
   get_all_users(pageNum = 1) {
     return {
-      type: actionsTypes.GET_ALL_USER,
+      type: actionTypes.GET_ALL_USER,
       pageNum: pageNum
     };
   }

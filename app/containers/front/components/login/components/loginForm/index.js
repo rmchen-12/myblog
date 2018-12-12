@@ -10,7 +10,6 @@ class LoginFormCom extends Component {
   handleLogin = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
-      console.log(this.props.login);
       if (!err) {
         this.props.login(values.userName, values.password);
       }

@@ -8,15 +8,15 @@ export const actionTypes = {
 };
 
 export const actions = {
-  get_all_tags: () => ({ type: actionsTypes.GET_ALL_TAGS }),
+  get_all_tags: () => ({ type: actionTypes.GET_ALL_TAGS }),
   delete_tag: name => ({
     type: actionTypes.DELETE_TAG,
     name
   }),
-  add_tag: name => ({ type: actionsTypes.ADD_TAG, name })
+  add_tag: name => ({ type: actionTypes.ADD_TAG, name })
 };
 
-export function reducer(state = initialState, action) {
+export function tags(state = initialState, action) {
   switch (action.type) {
     case actionTypes.SET_TAGS:
       return ["首页", ...action.data];

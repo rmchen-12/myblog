@@ -8,8 +8,8 @@ const initialState = {
 
 export const actionTypes = {
   GET_ARTICLE_LIST: "GET_ARTICLE_LIST",
-  RESPONSE_ARTICLE_LIST: "RESPONSE_ARTICLE_LIST",
   GET_ARTICLE_DETAIL: "GET_ARTICLE_DETAIL",
+  RESPONSE_ARTICLE_LIST: "RESPONSE_ARTICLE_LIST",
   RESPONSE_ARTICLE_DETAIL: "RESPONSE_ARTICLE_DETAIL"
 };
 
@@ -34,7 +34,7 @@ export function reducer(state = initialState, action) {
     case actionTypes.RESPONSE_ARTICLE_LIST:
       return {
         ...state,
-        articleList: [...action.data.list],
+        articleList: action.data.list,
         pageNum: action.data.pageNum,
         total: action.data.total
       };

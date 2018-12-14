@@ -6,6 +6,7 @@ import { responseClient } from "../util";
 const router = Express.Router();
 
 router.use("/user", require("./user"));
+
 //获取全部标签
 router.get("/getAllTags", (req, res) => {
   Tags.find(null, "name")

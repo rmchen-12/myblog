@@ -1,8 +1,13 @@
-/* 登录框样式覆写 */
+/* 登录框样式覆写  */
 :global(.ant-tabs-tab) {
   height: auto !important;
 }
 
 :global(.ant-tabs-top-content) {
   margin-top: 15px;
+}
+
+:global(.ant-layout-header) {
+  padding: 0;
+  height: auto;
 }

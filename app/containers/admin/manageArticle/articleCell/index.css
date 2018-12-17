@@ -1,0 +1,32 @@
+.cellContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid #efefef;
+  border-bottom: 2px solid #efefef;
+  margin-bottom: 10px;
+}
+
+.cellAboutArticle {
+  margin: 20px 0;
+}
+
+.cellAboutArticle > p:first-child {
+  margin-bottom: 10px;
+}
+
+.cellAboutArticle > p {
+  margin-bottom: 0;
+}
+
+.articleTitle {
+  font-weight: 800;
+}
+
+.cellOperation > button {
+  margin-left: 10px;
+}
+
+.articleInfo > span {
+  margin-right: 10px;
+}

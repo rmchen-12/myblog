@@ -21,10 +21,9 @@ export function* getArticleList(tag, pageNum) {
   }
 }
 
-export function* getArticleListFlow() {
+export function* getArticlesListFlow() {
   while (true) {
     let { tag, pageNum } = yield take(FrontActionTypes.GET_ARTICLE_LIST);
-    console.log(req);
     let res = yield call(getArticleList, tag, pageNum);
     if (res) {
       if (res.code === 0) {

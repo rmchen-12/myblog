@@ -1,8 +1,8 @@
 import Express from "express";
 
 const router = Express.Router();
-import Article from "../../models/article";
-import { responseClient } from "../util";
+import Article from "../../../models/article";
+import { responseClient } from "../../util";
 
 router.post("/addArticle", (req, res) => {
   const { title, content, time, tags, isPublish } = req.body;
@@ -51,7 +51,7 @@ router.post("/updateArticle", (req, res) => {
 router.get("/delArticle", (req, res) => {
   let id = req.query.id;
   Article.deleteOne({ _id: id })
-    .then(resule => {
+    .then(result => {
       if (result.n === 1) {
         responseClient(res, 200, 0, "删除成功");
       } else {

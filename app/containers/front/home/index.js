@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom";
 import { Pagination } from "antd";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import ArticleList from "./components/articleList";
+import { ArticleListCell } from "./components/articleListCell";
 import style from "./index.css";
 
 import { actions as frontActions } from "../../../reducers/front";
@@ -44,11 +44,16 @@ class Home extends PureComponent {
       <Redirect to="/404" />
     ) : (
       <div className={style.home}>
-        <ArticleList
-          history={history}
-          data={articleList}
-          getArticleDetail={get_article_detail}
-        />
+        <div className={style.articleList}>
+          {articleList.map(item => (
+            <ArticleListCell
+              history={this.props.history}
+              getArticleDetail={get_article_detail}
+              data={item}
+              key={item._id}
+            />
+          ))}
+        </div>
         <div className={style.pagination}>
           <Pagination
             defaultPageSize={5}

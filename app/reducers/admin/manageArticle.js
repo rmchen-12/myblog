@@ -12,9 +12,36 @@ export const actionTypes = {
 };
 
 export const actions = {
-    get_article_list(pageNum=1){
-        return {
-            type: actionTypes.
-        }
-    }
+  get_article_list(pageNum = 1) {
+    return {
+      type: actionTypes.ADMIN_GET_ARTICLE_LIST,
+      pageNum
+    };
+  },
+  delete_article(id) {
+    return {
+      type: actionTypes.ADMIN_DELETE_ARTICLE,
+      id
+    };
+  },
+  edit_article(id) {
+    return {
+      type: actionTypes.ADMIN_EDIT_ARTICLE,
+      id
+    };
+  }
+};
+
+export function articles(state = initialState, action) {
+  switch (action.type) {
+    case actionTypes.ADMIN_RESPONSE_GET_ARTICLE_LIST:
+      return {
+        ...state,
+        articleList: [...action.data.list],
+        total: action.data.total,
+        pageNum: action.data.pageNum
+      };
+    default:
+      return state;
+  }
 }

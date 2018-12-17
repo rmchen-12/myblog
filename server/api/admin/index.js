@@ -1,7 +1,7 @@
 import Express from "express";
 const router = Express.Router();
-import User from "../../models/user";
-import { responseClient } from "../util";
+import User from "../../../models/user";
+import { responseClient } from "../../util";
 
 //admin请求后台验证
 router.use((req, res, next) => {

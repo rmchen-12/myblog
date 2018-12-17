@@ -1,0 +1,15 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: calc(100vh - 180px);
+}
+
+.articleList {
+}
+
+.pagination {
+  flex: 0 0 auto;
+  text-align: center;
+  padding: 20px;
+}

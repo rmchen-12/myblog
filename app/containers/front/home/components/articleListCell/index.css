@@ -1,0 +1,22 @@
+.container {
+  padding: 20px;
+  border-bottom: 1px solid #efefef;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon {
+  margin-right: 4px;
+}
+
+.iconList span {
+  margin-right: 10px;
+}
+
+.readText:hover {
+  cursor: pointer;
+  color: cornflowerblue;
+}

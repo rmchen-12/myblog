@@ -1,6 +1,6 @@
 import Express from "express";
-import Tags from "../../models/tags";
-import { responseClient } from "../util";
+import Tags from "../../../models/tags";
+import { responseClient } from "../../util";
 
 const router = Express.Router();
 

@@ -31,7 +31,7 @@ router.get("/getArticles", (req, res) => {
   if (isPublish === "false") {
     searchCondition = null;
   }
-  let skip = (req, query.pagNum - 1) < 0 ? 0 : (req.query.pageNum - 1) * 5;
+  let skip = req.query.pagNum - 1 < 0 ? 0 : (req.query.pageNum - 1) * 6;
   let responseData = {
     total: 0,
     list: []
@@ -42,14 +42,14 @@ router.get("/getArticles", (req, res) => {
       Article.find(
         searchCondition,
         "_id title isPublish author viewCount commentCount time coverImg",
-        { skip: skip, limit: 5 }
+        { skip: skip, limit: 6 }
       )
         .then(result => {
           responseData.list = result;
           responseClient(res, 200, 0, "success", responseData);
         })
         .cancel(err => {
-          responseClient(res);
+          responseClient(err);
         });
     })
     .cancel(err => {

@@ -50,7 +50,7 @@ class newArticle extends PureComponent {
     articleData.content = content;
     articleData.tags = tags;
     articleData.isPublish = true;
-    articleData.time = moment(new Date(), "yyyy-mm-dd HH:MM:ss");
+    articleData.time = moment(new Date(), "YYYY-MM-DD HH:MM:ss");
     save_article(articleData);
   };
 
@@ -61,7 +61,7 @@ class newArticle extends PureComponent {
     articleData.content = content;
     articleData.tags = tags;
     articleData.isPublish = false;
-    articleData.time = moment(new Date(), "yyyy-mm-dd HH:MM:ss");
+    articleData.time = moment(new Date(), "YYYY-MM-DD HH:MM:ss");
     save_article(articleData);
   };
 
@@ -110,16 +110,23 @@ class newArticle extends PureComponent {
               type="primary"
               className={style.button}
               onClick={this.publish}
+              size={"small"}
             >
               发布
             </Button>
-            <Button type="primary" className={style.button} onClick={this.save}>
+            <Button
+              type="primary"
+              className={style.button}
+              onClick={this.save}
+              size={"small"}
+            >
               保存
             </Button>
             <Button
               type="primary"
               className={style.button}
               onClick={this.preview}
+              size={"small"}
             >
               预览
             </Button>
